@@ -1,9 +1,11 @@
 const coletaDados = () =>{
-  valorUsuario = rl.question("\nInforme o valor devido: R$");
-  diasVencimento = rl.question("Informe quantos dias se passaram desde o vencimento do boleto: ");
+  let valorUsuario = rl.question("\nInforme o valor devido: R$");
+  let diasVencimento = rl.question("Informe quantos dias se passaram desde o vencimento do boleto: ");
   let validacaoValor = valorUsuario > 0;  //True validado, false invalidado
   let validacaoDias  = diasVencimento >=0; //True validade, false invalidado
   if( validacaoValor && validacaoDias ){  //Ambos validados
+    let dadosColetadosValidos = {valor: valorUsuario, dias: diasVencimento};
+    return dadosColetadosValidos;
     console.log("Valores informados validados!");
   }else if(validacaoValor === false && validacaoDias === false){ //Ambos errados
       console.log("Ambos valores nao validaos, favor inserir-los novamente.");
@@ -17,8 +19,8 @@ const coletaDados = () =>{
   } 
 
 }
-const calculaDivida = (valorUsuario, diasVencimento) => {
-          if(diasVencimento === semAtraso){
+const calculaDivida = (valorUsuario, diasVencimento, valorFinal, taxaJuros) => {
+          if(diasVencimento === 0){
             console.log("Sua dívida está em dia, nao há atraso.");
           }
           else if(diasVencimento <= 15 ){
